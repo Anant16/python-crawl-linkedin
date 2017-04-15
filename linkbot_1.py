@@ -40,12 +40,19 @@ def ViewBot(browser):
 		people = getPeopleLinks(page)
 		if people:
 			for person in people:
-				ID = getID(person)
+				#print(person)
+				#ID = getID(person)
+				ID=person
 				if ID not in visited:
 					pList.append(person)
 					visited[ID] = 1
 		if pList: #if there is people to look at look at them
 			person = pList.pop()
+			
+			root = 'http://www.linkedin.com'
+			roots = 'https://www.linkedin.com'
+			if root not in person or roots not in person:
+				person = 'https://www.linkedin.com'+person
 			browser.get(person)
 			count += 1
 		else: #otherwise find people via the job pages
